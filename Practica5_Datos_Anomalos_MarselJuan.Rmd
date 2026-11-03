@@ -137,6 +137,25 @@ dirty_iris_clean<- dirty_iris %>%
 
 ```{r Solucion ejercicio 3, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
 
+#sumamos todas las instancias completas
+
+numero<-sum(complete.cases(dirty_iris_clean))
+
+cat('El número de observaciones completas es', numero, '\n')
+#porcentaje
+
+pct<-(sum(complete.cases(dirty_iris_clean)))/(nrow(dirty_iris_clean))*100
+
+cat('El porcentaje de observaciones completas es', pct, '%')
+
+
+#nuevo df
+clean_iris<- na.omit(dirty_iris_clean)
+
+#nrow del nuevo df debería coincidir con la variable creada 'numero'
+
+nrow(clean_iris)==numero
+
 ```
 
 # Detección de outliers univariante
