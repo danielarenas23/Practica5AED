@@ -350,6 +350,8 @@ outliers<- clean_iris %>%
   )
 
 
+#si hacemos View() de outliers, aparecen las nuevas columnas de outliers, donde es TRUE si es un outlier.
+
 ```
 
 ## Ejercicio 7: Comparativa de los métodos de detección de outliers
