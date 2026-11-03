@@ -200,7 +200,8 @@ estadisticos1<- clean_iris %>%
       media= ~ mean(.x,na.rm=T),
            mediana= ~ median(.x,na.rm=T),
            MADM= ~madm(.x),
-           iqr= ~IQR(.x, na.rm=T)
+           iqr= ~IQR(.x, na.rm=T),
+           de= ~sd(.x,na.rm=T)
     )
       
       
@@ -218,7 +219,8 @@ estadisticos2<- dirty_iris_clean %>%
       media= ~ mean(.x,na.rm=T),
            mediana= ~ median(.x,na.rm=T),
            MADM= ~madm(.x),
-           iqr= ~IQR(.x, na.rm=T)
+           iqr= ~IQR(.x, na.rm=T),
+           de=~sd(.x,na.rm=T)
     )
       
       
@@ -232,11 +234,12 @@ cat('Media clean=', estadisticos1$Petal.Length_media, 'Media dirty=', estadistic
 cat('Mediana clean=', estadisticos1$Petal.Length_mediana, 'Mediana dirty=', estadisticos2$Petal.Length_mediana, '\n' )
 cat('IQR clean=', estadisticos1$Petal.Length_iqr, 'IQR dirty=', estadisticos2$Petal.Length_iqr, '\n' )
 cat('MADM clean=', estadisticos1$Petal.Length_MADM, 'MADM dirty=', estadisticos2$Petal.Length_MADM, '\n' )
+cat('SD clean=', estadisticos1$Petal.Length_de, 'SD dirty=', estadisticos2$Petal.Length_de, '\n' )
 
 
 ```
 Podemos ver que la media es ligeramente menor en el df de clean, mientras que la mediana y MADM son idénticos en ambos. El IQR cambia solo en 0.1, siendo ligeramente mayor el de clean.
-
+Sin embargo, podemos ver que los datos sin limpiar tienen casi el doble de varianza que los clean.
 
 
 
@@ -258,15 +261,29 @@ Escribe una función que detecte los outliers de un vector $x$ para cada uno de 
 ```{r , include = FALSE}
 # Regla 3 sigma
 
+reglasigma<- function(x){
+  
+  
+  
+  
+}
 
 # Identificador Hampel
-
+reglahampel<- function(x){
+  
+}
 
 
 # Regla boxplot
-
+reglaboxplot<- function(x){
+  
+}
 
 # Percentiles
+
+reglapercentil<- function(x){
+  
+}
 
 ```
 
