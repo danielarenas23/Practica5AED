@@ -363,6 +363,25 @@ En los métodos de detección de outliers analizados, examina los resultados com
 
 ```{r Solucion ejercicio 7, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
 
+
+#numero de outliers por método
+
+cat('numero de outliers con 3sigma=',sum(outliers$Petal.Length_tressigma), '\n')
+
+cat('numero de outliers con boxplot=',sum(outliers$Petal.Length_boxplot), '\n')
+
+cat('numero de outliers con hampel=',sum(outliers$Petal.Length_hampel), '\n')
+
+cat('numero de outliers con percentiles=',sum(outliers$Petal.Length_percentil))
+
+
+
+
+
+
+
+
+
 ```
 
 ## Ejercicio 8: Representación gráfica
