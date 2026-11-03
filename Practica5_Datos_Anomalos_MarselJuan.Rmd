@@ -177,7 +177,70 @@ Hazlo para el data frame con observaciones completas `clean_iris` (que no tiene 
 
 ```{r , include = TRUE}
 
+
+
+#cabe recalcar que nuestro dirty_iris_clean equivale al dirty_iris, sólo se han eliminado los valores erróneos del ej2 y lo asigné a un nuevo df llamado  dirty_iris_clean
+
+
+
+#definimos funcion madm
+
+madm<-function(x){
+  1.4826 * median(abs(x - median(x, na.rm = TRUE)), na.rm = TRUE)
+}
+
+
+#CASO CLEAN_IRIS
+
+#hacemos como en las diapostivas de ejemplo de across 64
+estadisticos1<- clean_iris %>%
+  summarise(
+    across(where(is.numeric),
+    list(
+      media= ~ mean(.x,na.rm=T),
+           mediana= ~ median(.x,na.rm=T),
+           MADM= ~madm(.x),
+           iqr= ~IQR(.x, na.rm=T)
+    )
+      
+      
+  )
+           
+)
+
+#REPETIMOS PARA DIRTY
+
+
+estadisticos2<- dirty_iris_clean %>%
+  summarise(
+    across(where(is.numeric),
+    list(
+      media= ~ mean(.x,na.rm=T),
+           mediana= ~ median(.x,na.rm=T),
+           MADM= ~madm(.x),
+           iqr= ~IQR(.x, na.rm=T)
+    )
+      
+      
+  )
+           
+)
+
+#COMPARAMOS CON PETAL LENGTH
+
+cat('Media clean=', estadisticos1$Petal.Length_media, 'Media dirty=', estadisticos2$Petal.Length_media, '\n' )
+cat('Mediana clean=', estadisticos1$Petal.Length_mediana, 'Mediana dirty=', estadisticos2$Petal.Length_mediana, '\n' )
+cat('IQR clean=', estadisticos1$Petal.Length_iqr, 'IQR dirty=', estadisticos2$Petal.Length_iqr, '\n' )
+cat('MADM clean=', estadisticos1$Petal.Length_MADM, 'MADM dirty=', estadisticos2$Petal.Length_MADM, '\n' )
+
+
 ```
+Podemos ver que la media es ligeramente menor en el df de clean, mientras que la mediana y MADM son idénticos en ambos. El IQR cambia solo en 0.1, siendo ligeramente mayor el de clean.
+
+
+
+
+
 
 
 ## Ejercicio 5: Métodos de detección de outliers
