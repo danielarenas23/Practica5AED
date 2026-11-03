@@ -267,9 +267,9 @@ reglasigma<- function(x){
   inf<-  media - 3*de
   sup<- media + 3*de
   
-  if(x<inf | x>sup){
-    return(x)
-  }
+  
+  return(x<inf | x>sup)
+  
   
   
   
@@ -283,9 +283,9 @@ reglahampel<- function(x){
   inf<-  mediana - 3*MAD
   sup<- mediana + 3*MAD
   
-  if(x<inf | x>sup){
-    return(x)
-  }
+  
+  return(x<inf | x>sup)
+  
   
 
   
@@ -300,9 +300,9 @@ reglaboxplot<- function(x){
   inf<-  q1 - 1.5*iqr
   sup<- q3 + 1.5*iqr
   
-  if(x<inf | x>sup){
-    return(x)
-  }
+
+  return(x<inf | x>sup)
+
   
 }
 
@@ -312,9 +312,8 @@ reglapercentil<- function(x){
   inf<- quantile(x,0.05, na.rm=T)
   sup<- quantile(x,0.95, na.rm=T)
   
-  if(x<inf | x>sup){
-    return(x)
-  }
+  return(x<inf | x>sup)
+  
   
 }
 
@@ -328,6 +327,27 @@ Nota: podría extenderse la aplicación a todas las variables numéricas usando 
 
 ```{r Solucion ejercicio 6, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
 
+outliers<- clean_iris %>%
+  mutate(
+    across(Petal.Length,
+           
+           list(
+             tressigma= reglasigma,
+             hampel= reglahampel,
+             boxplot= reglaboxplot,
+             percentil=  reglapercentil
+             
+             
+             
+           )
+      
+      
+      
+      
+    )
+    
+    
+  )
 
 
 ```
